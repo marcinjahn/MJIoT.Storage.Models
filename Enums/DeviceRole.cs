@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MJIoT.Storage.Models.Enums
+namespace MJIot.Storage.Models.Enums
 {
     public enum DeviceRole
     {

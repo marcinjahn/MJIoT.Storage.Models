@@ -1,12 +1,12 @@
-﻿using MJIoT.Storage.Models;
-using MJIoT_DBModel;
+﻿using MJIot.Storage.Models;
+using MjIot.Storage.Models.EF6Db;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MJIoT_ModelStorage.Repositories
+namespace MJIot.Storage.Models.Repositiories
 {
     public interface IDeviceTypeRepository : IRepository<DeviceType>
     {

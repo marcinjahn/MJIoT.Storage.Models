@@ -1,12 +1,13 @@
-﻿using MJIoT_DBModel;
-using MJIoT_ModelStorage.Repositories;
+﻿using MjIot.Storage.Models.EF6Db;
+using MJIot.Storage.Models.Repositiories;
+using MJIoT_DBModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MJIoT.Storage.Models
+namespace MJIot.Storage.Models
 {
     public interface IUnitOfWork : IDisposable
     {

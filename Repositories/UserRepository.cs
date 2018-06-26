@@ -1,7 +1,7 @@
-﻿using MJIoT_DBModel;
+﻿using MjIot.Storage.Models.EF6Db;
 using System.Linq;
 
-namespace MJIoT.Storage.Models
+namespace MJIot.Storage.Models.Repositiories
 {
     public interface IUserRepository : IRepository<User>
     {

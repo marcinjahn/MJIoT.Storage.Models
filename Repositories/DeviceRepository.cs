@@ -1,5 +1,5 @@
-﻿using MJIoT.Storage.Models.Enums;
-using MJIoT_DBModel;
+﻿using MJIot.Storage.Models.Enums;
+using MjIot.Storage.Models.EF6Db;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MJIoT.Storage.Models
+namespace MJIot.Storage.Models.Repositiories
 {
 
 

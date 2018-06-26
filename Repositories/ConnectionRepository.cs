@@ -1,9 +1,9 @@
-﻿using MJIoT_DBModel;
+﻿using MjIot.Storage.Models.EF6Db;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 
-namespace MJIoT.Storage.Models
+namespace MJIot.Storage.Models.Repositiories
 {
     public interface IConnectionRepository : IRepository<Connection>
     {
