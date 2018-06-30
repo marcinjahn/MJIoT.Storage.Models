@@ -49,6 +49,14 @@ namespace MJIot.Storage.Models.Repositiories
         public T Get(int id)
         {
             return _context.Set<T>().Find(id);
+
+            //I wanted to add includes option, so that Navigation Properties could be also fetced, but it's problematic
+            //IQueryable<T> query = _context.Set<T>();
+            //if (includes != null)
+            //    foreach (Expression<Func<T, object>> include in includes)
+            //        query = query.Include(include);
+
+            //return ((DbSet<T>)query).Find(id);
         }
 
         public IEnumerable<T> GetAll()
