@@ -34,10 +34,9 @@ namespace MJIot.Storage.Models.Repositiories
         {
             return Context.Connections
                 .Include(n => n.ListenerDevice)
+                .Include(n => n.ListenerDevice.DeviceType)
                 .Include(n => n.SenderProperty)
                 .Include(n => n.ListenerProperty)
-                //.Include(n => n.CalculationValue)
-                //.Include(n => n.FilterValue)
                 .Where(n => n.SenderDevice.Id == device.Id)
                 .ToList();
         }

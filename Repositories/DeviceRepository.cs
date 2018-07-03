@@ -42,17 +42,28 @@ namespace MJIot.Storage.Models.Repositiories
 
         public DeviceRole GetDeviceRole(Device device)
         {
-            var isSender = Context.PropertyTypes.Where(n => n.DeviceType.Id == device.DeviceType.Id).Any(n => n.IsSenderProperty);
-            var isListener = Context.PropertyTypes.Where(n => n.DeviceType.Id == device.DeviceType.Id).Any(n => n.IsListenerProperty);
+            var currentType = device.DeviceType;
+            do
+            {
+                var isSender = Context.PropertyTypes.Where(n => n.DeviceType.Id == device.DeviceType.Id).Any(n => n.IsSenderProperty);
+                var isListener = Context.PropertyTypes.Where(n => n.DeviceType.Id == device.DeviceType.Id).Any(n => n.IsListenerProperty);
 
-            if (isSender && isListener)
-                return DeviceRole.bidirectional;
-            else if (isSender)
-                return DeviceRole.sender;
-            else if (isListener)
-                return DeviceRole.listener;
-            else
-                return DeviceRole.none;
+                if (isSender && isListener)
+                    return DeviceRole.bidirectional;
+                else if (isSender)
+                    return DeviceRole.sender;
+                else if (isListener)
+                    return DeviceRole.listener;  
+
+                currentType = Context.DeviceTypes
+                    .Include(n => n.BaseDeviceType)
+                    .Where(n => n.Id == currentType.Id)
+                    .First()
+                    .BaseDeviceType;
+            }
+            while (currentType != null);
+
+            return DeviceRole.none;
         }
 
         public DeviceType GetDeviceType(int deviceId)

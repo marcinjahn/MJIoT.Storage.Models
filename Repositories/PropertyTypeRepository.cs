@@ -19,10 +19,24 @@ namespace MJIot.Storage.Models.Repositiories
 
         public IEnumerable<PropertyType> GetPropertiesOfDevice(DeviceType deviceType)
         {
-            var properties = Context.PropertyTypes
-                .Include(n => n.DeviceType)
-                .Where(n => n.DeviceType.Id == deviceType.Id)
-                .ToList();
+            List<PropertyType> properties = new List<PropertyType>();
+            var currentType = deviceType;
+
+            do
+            {
+                properties.AddRange(
+                    Context.PropertyTypes
+                        .Include(n => n.DeviceType)
+                        .Where(n => n.DeviceType.Id == currentType.Id)
+                );
+
+                currentType = Context.DeviceTypes
+                    .Include(n => n.BaseDeviceType)
+                    .Where(n => n.Id == currentType.Id)
+                    .First()
+                    .BaseDeviceType;
+            }
+            while (currentType != null);
 
             return properties;
         }
