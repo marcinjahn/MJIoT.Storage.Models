@@ -14,7 +14,7 @@ namespace MJIot.Storage.Models.Repositiories
 
     public interface IDeviceRepository : IRepository<Device>
     {
-        IEnumerable<Device> GetDevicesOfUser(int userId);
+        List<Device> GetDevicesOfUser(int userId);
         string GetDeviceName(Device device);
         DeviceRole GetDeviceRole(Device device);
         DeviceType GetDeviceType(int deviceId);
@@ -27,7 +27,7 @@ namespace MJIot.Storage.Models.Repositiories
         {
         }
 
-        public IEnumerable<Device> GetDevicesOfUser(int userId)
+        public List<Device> GetDevicesOfUser(int userId)
         {
             return Context.Devices.Include(n => n.DeviceType)
                 .Where(n => n.User.Id == userId).ToList();
